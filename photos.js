@@ -19,4 +19,6 @@ const photos = [
   { file: "photo16.jpg", horizontal: true },
   { file: "photo17.jpg", horizontal: true  },
   { file: "photo18.jpg", horizontal: true },
+  { file: "photo19.jpg", horizontal: true },
+  { file: "photo20.jpg", horizontal: false },
 ];

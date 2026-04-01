@@ -2,33 +2,172 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact - Yigit Arisoy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="images/logo.png" type="image/png" sizes="256x256">
   <style>
-    body { margin: 0; font-family: sans-serif; background: white; color: black; }
-    header { display: flex; align-items: center; padding: 20px; font-size: 24px; font-weight: bold; justify-content: flex-start; }
-    header img { height: 50px; margin-right: 15px; }
-    nav { margin-left: 20px; }
-    nav a { margin: 0 10px; text-decoration: none; color: black; font-size: 16px; }
-    .contact-page { text-align: center; padding: 100px 20px; font-size: 18px; line-height: 1.6; }
+    :root { --bg: #fff; --fg: #000; --fg-alt: #888; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, sans-serif; background: var(--bg); color: var(--fg); }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0 0 0 2.2rem;
+      gap: 1.2rem;
+      height: 100px;
+    }
+    .logo { height: 100px; margin-right: 2.2rem; flex-shrink: 0; }
+    nav { display: flex; flex-direction: row; align-items: center; gap: 0.7rem; height: 100px; }
+    nav a {
+      text-decoration: none;
+      color: var(--fg);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      position: relative;
+      padding: 0 0.18em;
+      transition: color .18s;
+      line-height: 100px;
+    }
+    nav a:hover { color: var(--fg-alt); }
+    nav a.active::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--fg);
+      border-radius: 1px;
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+    }
+
+    .contact-page {
+      max-width: 600px;
+      margin: 80px auto;
+      padding: 0 2rem;
+    }
+    .contact-page h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+    .contact-page p.sub {
+      color: var(--fg-alt);
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+    .contact-items { display: flex; flex-direction: column; gap: 1.5rem; }
+    .contact-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .contact-item span.label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-alt);
+    }
+    .contact-item a, .contact-item span.value {
+      font-size: 1.05rem;
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .contact-item a:hover { text-decoration: underline; }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: var(--fg);
+      margin: 3rem 0;
+      opacity: 0.15;
+    }
+
+    .services { display: flex; flex-direction: column; gap: 0.6rem; }
+    .services span {
+      font-size: 0.95rem;
+      color: var(--fg-alt);
+      padding-left: 1rem;
+      position: relative;
+    }
+    .services span::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--fg-alt);
+    }
+
+    footer {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      font-size: .85rem;
+      color: var(--fg-alt);
+    }
+    footer a { color: var(--fg-alt); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      header { padding: 1rem; }
+      .logo { height: 70px; }
+      .contact-page { margin: 50px auto; }
+    }
   </style>
 </head>
 <body>
 
 <header>
-  <img src="/images/logo.svg" alt="Logo">
+  <img src="images/logo.png" alt="Yigit Arisoy Logo" class="logo">
   <nav>
     <a href="index.html">Home</a>
-    <a href="https://www.instagram.com/yigitarsy" target="_blank">Instagram</a>
-    <a href="contact.html">Contact</a>
+    <a href="https://www.instagram.com/yigitarsy" target="_blank" rel="noopener noreferrer">Instagram</a>
+    <a href="contact.html" class="active">Contact</a>
   </nav>
 </header>
 
 <div class="contact-page">
-  <h2>Contact</h2>
-  <p>Based in Melbourne</p>
-  <p><a href="mailto:info@yigitarisoy.com">info@yigitarisoy.com</a></p>
-  <p>+61 0401 780 553 </p>
+  <h2>Get in touch</h2>
+  <p class="sub">Based in Melbourne, available across the inner west and beyond.</p>
+
+  <div class="contact-items">
+    <div class="contact-item">
+      <span class="label">Email</span>
+      <a href="mailto:info@yigitarisoy.com">info@yigitarisoy.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="label">Phone</span>
+      <a href="tel:+61401780333">+61 401 780 333</a>
+    </div>
+    <div class="contact-item">
+      <span class="label">Instagram</span>
+      <a href="https://www.instagram.com/yigitarsy" target="_blank" rel="noopener noreferrer">@yigitarsy</a>
+    </div>
+    <div class="contact-item">
+      <span class="label">Location</span>
+      <span class="value">Footscray, Melbourne VIC</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="contact-item" style="margin-bottom: 1rem;">
+    <span class="label">Services</span>
+  </div>
+  <div class="services">
+    <span>Property &amp; real estate photography</span>
+    <span>Video walkthroughs &amp; reels</span>
+    <span>Aerial &amp; drone photography</span>
+    <span>Commercial &amp; hospitality</span>
+    <span>Portrait &amp; editorial</span>
+  </div>
 </div>
+
+<footer>
+  &copy; 2025 Yigit Arisoy · <a href="https://www.instagram.com/yigitarsy" target="_blank" rel="noopener noreferrer">Instagram</a>
+</footer>
 
 </body>
 </html>

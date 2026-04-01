@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Yigit Arisoy</title>
 
-  <!-- Performance preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-  <!-- Fonts & Lightbox CSS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 
-  <!-- Favicon -->
   <link rel="icon" href="images/logo.png" type="image/png" sizes="256x256">
 
-  <!-- Main stylesheet -->
   <style>
     :root {
       --bg: #fff;
@@ -38,91 +34,78 @@
       color: var(--fg);
       transition: background .3s, color .3s;
     }
-    /* Loader */
-    #loader {
-      position: fixed;
-      inset: 0;
-      background: var(--bg);
+
+    header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      z-index: 9999;
+      justify-content: flex-start;
+      padding: 0 0 0 2.2rem;
+      gap: 1.2rem;
+      max-width: none;
+      margin: 0;
+      height: 100px;
     }
-    #loader img { width: 80px; }
+    .logo {
+      height: 100px;
+      margin-right: 2.2rem;
+      flex-shrink: 0;
+    }
+    nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.7rem;
+      height: 100px;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--fg);
+      font-family: 'Inter', Arial, sans-serif;
+      font-weight: 600;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      position: relative;
+      padding: 0 0.18em 0 0.18em;
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      transition: color .18s, border .18s;
+      line-height: 100px;
+    }
+    nav a.active {
+      color: var(--fg);
+    }
+    nav a.active::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--fg);
+      margin-top: 2px;
+      border-radius: 1px;
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+    }
+    nav a:hover {
+      color: var(--fg-alt);
+    }
+    nav a:not(.active):hover::after {
+      display: none;
+    }
+    #theme-toggle {
+      background: none;
+      border: none;
+      font-size: 1.05rem;
+      cursor: pointer;
+      color: var(--fg);
+      margin-left: 1.1rem;
+      padding: 0 0.2em;
+      line-height: 100px;
+      vertical-align: middle;
+      filter: grayscale(100%);
+    }
 
-    /* Header */
-header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 0 0 2.2rem;
-  gap: 1.2rem;
-  max-width: none;
-  margin: 0;
-  height: 100px;
-}
-.logo {
-  height: 100px;
-  margin-right: 2.2rem;
-  flex-shrink: 0;
-}
-nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.7rem;
-  height: 100px;
-}
-nav a {
-  text-decoration: none;
-  color: var(--fg);
-  font-family: 'Inter', Arial, sans-serif;
-  font-weight: 600;
-  font-size: 0.92rem;
-  letter-spacing: 0.03em;
-  position: relative;
-  padding: 0 0.18em 0 0.18em;
-  border-radius: 0;
-  background: none;
-  box-shadow: none;
-  transition: color .18s, border .18s;
-  line-height: 100px;
-}
-nav a.active {
-  color: var(--fg);
-}
-nav a.active::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 2px;
-  background: var(--fg);
-  margin-top: 2px;
-  border-radius: 1px;
-  position: absolute;
-  left: 0;
-  bottom: 4px;
-}
-nav a:hover {
-  color: var(--fg-alt);
-}
-nav a:not(.active):hover::after {
-  display: none;
-}
-#theme-toggle {
-  background: none;
-  border: none;
-  font-size: 1.05rem;
-  cursor: pointer;
-  color: var(--fg);
-  margin-left: 1.1rem;
-  padding: 0 0.2em;
-  line-height: 100px;
-  vertical-align: middle;
-  filter: grayscale(100%);
-}
-
-    /* Gallery grid */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
@@ -151,13 +134,15 @@ nav a:not(.active):hover::after {
       box-shadow: 0 6px 24px 0 rgba(0,0,0,0.13);
     }
 
-    /* Footer & back-to-top */
     footer {
       text-align: center;
       padding: 2rem 1rem;
       font-size: .9rem;
       color: var(--fg-alt);
     }
+    footer a { color: var(--fg-alt); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
     #to-top {
       position: fixed;
       right: 1rem;
@@ -172,44 +157,34 @@ nav a:not(.active):hover::after {
     }
     #to-top:hover { opacity: 1; }
 
-    /* Responsive tweaks */
     @media (max-width: 768px) {
-  header { padding: 1rem; }
-  .logo { height: 80px; }
-  nav { flex-direction: row; gap: 0.5rem; }
-  #theme-toggle { margin-top: 0; margin-left: 1rem; }
-  .gallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: 1fr 1fr;
-  }
-  header { padding: 0.5rem; }
-}
+      header { padding: 1rem; }
+      .logo { height: 80px; }
+      nav { flex-direction: row; gap: 0.5rem; }
+      #theme-toggle { margin-top: 0; margin-left: 1rem; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .gallery { grid-template-columns: 1fr 1fr; }
+      header { padding: 0.5rem; }
+    }
   </style>
 </head>
 
 <body data-theme="light">
 
-  <!-- Loader -->
-  <div id="loader"><img src="images/logo.png" alt="Loading…"></div>
-
-  <!-- Header -->
   <header>
     <img src="images/logo.png" alt="Yigit Arisoy Logo" class="logo">
     <nav>
       <a href="index.html" class="active">Home</a>
+      <a href="property.html">Property</a>
       <a href="https://www.instagram.com/yigitarsy" target="_blank" rel="noopener noreferrer">Instagram</a>
       <a href="contact.html">Contact</a>
     </nav>
     <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
   </header>
 
-  <!-- Gallery -->
   <div class="gallery">
-    <!-- 31 lazy-loaded, %20-encoded thumbnails -->
     <a href="images/your-image%20(1).jpg" class="glightbox" data-gallery="portfolio"><img src="images/your-image-thumb%20(1).jpg" alt="Cinematic waterfront portrait" loading="lazy"></a>
     <a href="images/your-image%20(2).jpg" class="glightbox" data-gallery="portfolio"><img src="images/your-image-thumb%20(2).jpg" alt="Moody urban skyline" loading="lazy"></a>
     <a href="images/your-image%20(3).jpg" class="glightbox" data-gallery="portfolio"><img src="images/your-image-thumb%20(3).jpg" alt="Artistic hands portrait" loading="lazy"></a>
@@ -243,31 +218,23 @@ nav a:not(.active):hover::after {
     <a href="images/your-image%20(31).jpg" class="glightbox" data-gallery="portfolio"><img src="images/your-image-thumb%20(31).jpg" alt="Final cinematic shot" loading="lazy"></a>
   </div>
 
-  <!-- Footer -->
   <footer>
     &copy; 2025 Yigit Arisoy · <a href="https://www.instagram.com/yigitarsy" target="_blank" rel="noopener noreferrer">Instagram</a>
   </footer>
 
-  <!-- Back to Top -->
   <a href="#" id="to-top" aria-label="Back to top">↑ Top</a>
 
-  <!-- Lightbox & Theme scripts -->
   <script defer src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
   <script defer>
-    // Loader fade-out
     window.addEventListener('load',()=> {
-      document.getElementById('loader').style.display='none';
-      // Lightbox init (ensure after DOM and script loaded)
       GLightbox({ selector: '.glightbox' });
     });
-    // Dark-mode toggle
     const btn = document.getElementById('theme-toggle');
     function setThemeIcon(theme) {
       btn.innerHTML = theme === 'dark'
         ? `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" fill="none"/><path d="M14 10a4 4 0 0 1-4 4A4 4 0 0 1 10 6a4 4 0 0 1 4 4z" fill="currentColor"/></svg>`
         : `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="5" stroke="currentColor" stroke-width="2" fill="none"/><g stroke="currentColor" stroke-width="2"><line x1="10" y1="1" x2="10" y2="4"/><line x1="10" y1="16" x2="10" y2="19"/><line x1="1" y1="10" x2="4" y2="10"/><line x1="16" y1="10" x2="19" y2="10"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="13.66" y1="13.66" x2="15.78" y2="15.78"/><line x1="4.22" y1="15.78" x2="6.34" y2="13.66"/><line x1="13.66" y1="6.34" x2="15.78" y2="4.22"/></g></svg>`;
     }
-    // Set initial icon
     setThemeIcon(document.body.getAttribute('data-theme'));
     btn.addEventListener('click',()=>{
       const current = document.body.getAttribute('data-theme');
@@ -275,7 +242,6 @@ nav a:not(.active):hover::after {
       document.body.setAttribute('data-theme', next);
       setThemeIcon(next);
     });
-    // Smooth “back to top”
     document.getElementById('to-top').addEventListener('click',e=>{
       e.preventDefault();
       window.scroll({ top:0, behavior:'smooth' });

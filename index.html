@@ -3,11 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Yigit Arisoy</title>
+  <title>Yigit Arisoy — Melbourne Photographer</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Melbourne photographer specialising in real estate, property, and commercial photography. Based in Footscray, servicing the inner west and beyond.">
+  <meta name="keywords" content="Melbourne photographer, real estate photography Melbourne, property photography, Footscray photographer, inner west Melbourne photography">
+  <meta name="author" content="Yigit Arisoy">
+
+  <!-- Open Graph (looks good when shared on social / messages) -->
+  <meta property="og:title" content="Yigit Arisoy — Melbourne Photographer">
+  <meta property="og:description" content="Real estate, property and commercial photography. Based in Footscray, Melbourne.">
+  <meta property="og:url" content="https://yigitarisoy.com">
+  <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
   <link rel="icon" href="images/logo.png" type="image/png">
 
@@ -59,6 +70,14 @@
       display: grid;
       gap: 1rem;
       height: 580px;
+      /* Fade in on scroll */
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .photo-row.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     .photo-row.big-left  { grid-template-columns: 2fr 1fr; }
     .photo-row.big-right { grid-template-columns: 1fr 2fr; }
@@ -169,6 +188,21 @@
     }
 
     GLightbox({ selector: '.glightbox' });
+
+    // Scroll fade-in observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          // Slight stagger for rows visible at same time
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.photo-row').forEach(row => observer.observe(row));
   </script>
 </body>
 </html>

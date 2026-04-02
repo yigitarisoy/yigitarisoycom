@@ -131,24 +131,9 @@
   to   { opacity: 1; }
 }
 
-    @media (pointer: fine) {
-      *, *::before, *::after { cursor: none !important; }
-      #cursor-dot {
-        position: fixed;
-        top: 0; left: 0;
-        width: 8px; height: 8px;
-        background: #1a1a1a;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: opacity 0.3s;
-      }
-    }
   </style>
 </head>
 <body>
-  <div id="cursor-dot"></div>
 
   <header>
     <img src="images/logo.png" alt="Yigit Arisoy" class="logo">
@@ -176,14 +161,5 @@
     <a href="https://www.instagram.com/yigitarsy" target="_blank">Instagram</a>
   </footer>
 
-<script>
-  const dot = document.getElementById('cursor-dot');
-  if (dot) {
-    document.addEventListener('mousemove', e => {
-      dot.style.left = e.clientX + 'px';
-      dot.style.top  = e.clientY + 'px';
-    });
-  }
-</script>
 </body>
 </html>
